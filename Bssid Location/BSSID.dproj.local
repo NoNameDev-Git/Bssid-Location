@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>1899.12.30 00:00:00.000.143,C:\Users\Home\Desktop\BSSID LOCATION\Project1.dproj=C:\Users\Home\Documents\Embarcadero\Studio\Projects\Project1.dproj</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.450,C:\Users\Home\Desktop\BSSID LOCATION\BSSID.dproj=C:\Users\Home\Desktop\BSSID LOCATION\Project1.dproj</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.976,=C:\Users\Home\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.362,C:\Users\Home\Desktop\BSSID LOCATION\Unit1.pas=C:\Users\Home\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.362,C:\Users\Home\Desktop\BSSID LOCATION\Unit1.dfm=C:\Users\Home\Documents\Embarcadero\Studio\Projects\Unit1.dfm</Transaction>
+  </Transactions>
+</BorlandProject>

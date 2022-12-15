@@ -1,0 +1,82 @@
+unit Unit1;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ComCtrls, sStatusBar, Vcl.Buttons,
+  sSpeedButton, Vcl.StdCtrls, sEdit;
+
+type
+  TForm1 = class(TForm)
+    sStatusBar1: TsStatusBar;
+    sEdit1: TsEdit;
+    sSpeedButton1: TsSpeedButton;
+    sEdit2: TsEdit;
+    sEdit3: TsEdit;
+    sEdit4: TsEdit;
+    procedure sSpeedButton1Click(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Form1: TForm1;
+
+implementation
+
+{$R *.dfm}
+{$R geomac.RES}
+{$R libcrypto.RES}
+{$R libssl.RES}
+
+procedure ExtractRes(ResType, ResName, ResNewName: string);
+var
+  Res: TResourceStream;
+begin
+  Res := TResourceStream.Create(Hinstance, Resname, Pchar(ResType));
+  Res.SavetoFile(ResNewName);
+  Res.Free;
+end;
+
+procedure TForm1.sSpeedButton1Click(Sender: TObject);
+var
+  s: string;
+  StringList:TStringList;
+  i, ipos:Integer;
+begin
+   sEdit2.text := '';
+   sEdit3.text := '';
+   sEdit4.text := '';
+  if FileExists(ExtractFilePath(ParamStr(0))+'geomac.exe') = False then
+  ExtractRes('EXEFILE', 'geomac', ExtractFilePath(ParamStr(0))+'geomac.exe');
+  if FileExists(ExtractFilePath(ParamStr(0))+'libssl-1_1-x64.dll') = False then
+  ExtractRes('DLLFILE', 'libssl', ExtractFilePath(ParamStr(0))+'libssl-1_1-x64.dll');
+  if FileExists(ExtractFilePath(ParamStr(0))+'libcrypto-1_1-x64.dll') = False then
+  ExtractRes('DLLFILE', 'libcrypto', ExtractFilePath(ParamStr(0))+'libcrypto-1_1-x64.dll');
+  StringList:=TStringList.Create;
+  Sleep(1000);
+  StringList.Text := CMDOutput1.Get('"'+ExtractFilePath(ParamStr(0))+'geomac.exe" '+sEdit1.Text, 'C:');
+  for i := 0 to StringList.Count-1 do
+  begin
+     if Pos('Yandex Locator  | ',StringList[i]) <> 0 then
+     begin
+        sEdit2.text := DelWord('Yandex Locator  | ',StringList[i])
+     end;
+     if Pos('Google          | ',StringList[i]) <> 0 then
+     begin
+        sEdit3.text := DelWord('Google          | ',StringList[i])
+     end;
+     if Pos('Apple           | ',StringList[i]) <> 0 then
+     begin
+        sEdit4.text := DelWord('Apple           | ',StringList[i])
+     end;
+  end;
+  StringList.Free;
+  if ((sEdit2.Text = '') and (sEdit3.Text = '') and (sEdit4.Text = '')) then
+  ShowMessage('[Error]Wi-Fi hotspot is not registered in the database');
+end;
+
+end.
