@@ -8,7 +8,6 @@
 	<img src="https://i.postimg.cc/G2F6h8NW/1.png" />
 </p>
 
-<a thref="https://youtu.be/e5YjG31X-Ew">Bssid-Location</a>
 <a href="https://youtu.be/e5YjG31X-Ew"> how to assemble Bssid-Location </a>
 -------
 
